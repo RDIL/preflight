@@ -1,9 +1,6 @@
 development:
   adapter: postgresql
-  host: db
-  database: <%= ENV.fetch("POSTGRES_DB") %>
-  username: <%= ENV.fetch("POSTGRES_USER") %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  database: preflight-dev
   pool: 10
   timeout: 5000
 
