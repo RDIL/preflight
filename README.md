@@ -30,3 +30,30 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+#### Running using DOCKER
+
+##### Create an .env file
+```
+CANONICAL_DOMAIN=localhost:3000
+URL_PROTOCOL=http
+DB_HOST=db
+POSTGRES_USER=*
+POSTGRES_PASSWORD=*
+POSTGRES_DB=*
+NEW_RELIC_ENABLED=false
+```
+
+##### Build the containers
+`docker compose build`
+
+##### Run the migrations
+`docker compose run web bin/rake db:migrate`
+
+##### Generate the static files
+`docker compose run web bin/rails generate bootstrap:install static --no-coffeescript`
+
+
+##### Start the server
+`docker compose up`

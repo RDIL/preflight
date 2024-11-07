@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2024_11_06_203538) do
     t.bigint "github_pull_request_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["checklist_id"], name: "index_applied_checklists_on_checklist_id"
     t.index ["github_pull_request_id", "checklist_id"], name: "one_checklist_application_per_pull", unique: true
   end
 
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 2024_11_06_203538) do
     t.datetime "updated_at", null: false
     t.datetime "hook_deleted_at"
     t.index ["github_id"], name: "index_github_webhooks_on_github_id"
+    t.index ["github_repository_id"], name: "index_github_webhooks_on_github_repository_id", unique: true
   end
 
   create_table "identities", id: :serial, force: :cascade do |t|
