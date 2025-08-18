@@ -1,43 +1,40 @@
 ruby File.read('./.ruby-version').chomp
 source 'https://rubygems.org'
 
-gem "decent_exposure"
+gem 'decent_exposure'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
-gem "devise"
+gem 'devise'
 gem 'dotenv'
 gem 'foreman'
-gem "haml"
-gem "haml-rails"
+gem 'haml'
+gem 'haml-rails'
 gem 'listen'
-gem 'newrelic_rpm'
-gem 'nokogiri', '~> 1.11.4'
-gem "omniauth"
+gem 'nokogiri', '~> 1.18'
+gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
-gem "pg"
-gem "pry"
-gem "pry-rails"
-gem "twitter-bootstrap-rails"
-gem 'coffee-rails'
+gem 'pg'
+gem 'pry'
+gem 'pry-rails'
+gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'rack-timeout'
-gem 'rails', '~> 5.2.4.3'
+gem 'rails', '~> 7.2'
 gem 'rake', '< 13.0'
 gem 'sass-rails'
-gem 'thin'
+gem 'puma'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'unicorn'
+gem 'faraday-retry'
 
 group :test, :development do
-  gem "factory_girl"
-  gem "fivemat"
-  gem "rspec-rails"
-  gem "rspec"
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rspec'
 end
 
 group :test do
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
 end
