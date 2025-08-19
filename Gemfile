@@ -7,18 +7,14 @@ gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'devise'
 gem 'dotenv'
-gem 'foreman'
 gem 'haml'
 gem 'haml-rails'
-gem 'listen'
 gem 'nokogiri', '~> 1.18'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'octokit'
 gem 'pg'
-gem 'pry'
-gem 'pry-rails'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
@@ -31,12 +27,23 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'faraday-retry'
 
-group :test, :development do
+group :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rspec'
+  gem 'rspec-its'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
-group :test do
-  gem 'shoulda-matchers'
+group :development do
+  gem 'listen'
+  gem 'foreman'
+end
+
+group :test, :development do
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
