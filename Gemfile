@@ -1,4 +1,4 @@
-ruby File.read('./.ruby-version').chomp
+ruby '3.3.9'
 source 'https://rubygems.org'
 
 gem 'decent_exposure'
