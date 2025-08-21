@@ -5,9 +5,9 @@ RUN mkdir /preflight
 
 WORKDIR /preflight
 
-ADD .ruby-version /preflight/.ruby-version
-ADD Gemfile /preflight/Gemfile
-ADD Gemfile.lock /preflight/Gemfile.lock
+ADD ../.ruby-version /preflight/.ruby-version
+ADD ../Gemfile /preflight/Gemfile
+ADD ../Gemfile.lock /preflight/Gemfile.lock
 
 RUN bundle install
-ADD . /preflight
+ADD .. /preflight
