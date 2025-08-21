@@ -1,0 +1,22 @@
+<h1>
+  <%= github_repository.github_full_name %> (<%= link_to 'GitHub', github_repository.github_url, target: '_blank' %>)
+</h1>
+
+<% if github_repository.checklists.any? %>
+  <table class="table repository-checklists">
+    <thead>
+      <tr>Checklist</tr>
+    </thead>
+    <tbody>
+      <% github_repository.checklists.each do |c| %>
+        <tr>
+          <td>
+            <%= link_to c.name, checklist_url(c) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to '[+] New Checklist', new_checklist_path(github_repository_id: github_repository.id) %>
+<% end %>

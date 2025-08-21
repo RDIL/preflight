@@ -1,0 +1,51 @@
+<%= form_for checklist, html: {class: 'form-horizontal'} do |f| %>
+  <% if checklist.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= "#{pluralize(checklist.errors.count, "error")} prohibited this checklist from being saved:" %>
+      </h2>
+
+      <ul>
+        <% checklist.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :github_repository_id, class: 'control-label col-sm-2' %>
+
+    <div class="col-sm-6">
+      <%= f.select :github_repository_id, current_user.accessible_github_repositories.select_options, {include_blank: true}, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'control-label col-sm-2' %>
+
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :with_file_matching_pattern, "Only when at least one changed file path matches this pattern (regexp)", class: 'control-label col-sm-2' %>
+
+    <div class="col-sm-6">
+      <%= f.text_field :with_file_matching_pattern, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-6">
+      <div class="actions">
+        <%= f.submit 'Save', class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+  </div>
+<% end %>

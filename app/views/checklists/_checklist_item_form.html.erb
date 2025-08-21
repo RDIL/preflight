@@ -1,0 +1,19 @@
+<% placeholder ||= nil %>
+
+<%= form_for [checklist, item], remote: true do |f| %>
+  <div class="col-xs-6 col-md-4">
+    <% unless item.new_record? %>
+      <div class="checklist-item-name" data-edit-prompt="Edit">
+        <span class="name">
+          <%= item.name %>
+        </span>
+      </div>
+    <% end %>
+
+    <%= f.text_field :name, placeholder: placeholder, class: 'form-control', :'data-edit-control' => true %>
+  </div>
+
+  <div class="col-xs-2 col-md-1">
+    <%= f.submit 'Save', :'data-disable-with' => 'Saving..', class: 'btn btn-primary btn-sm', :'data-edit-control' => true %>
+  </div>
+<% end %>
