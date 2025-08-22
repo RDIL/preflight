@@ -1,0 +1,31 @@
+<h1>My Checklists</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Repository</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% checklists.each do |checklist| %>
+    <tr>
+      <td>
+        <%= link_to checklist.name, checklist %>
+      </td>
+      <td>
+        <%= link_to checklist.github_repository.github_full_name, github_repository_path(checklist.github_repository) %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_checklist_path(checklist) %>
+      </td>
+      <td>
+        <%= link_to 'Destroy', checklist, method: :delete, data: {confirm: 'Are you sure?'} %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to '[+] New Checklist', new_checklist_path %>

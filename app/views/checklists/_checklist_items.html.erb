@@ -1,0 +1,9 @@
+<div class="checklist-items">
+  <% checklist.checklist_items.each do |item| %>
+    <%= render 'checklist_item', item: item, checklist: checklist %>
+  <% end %>
+
+  <div class="row">
+    <%= render 'checklist_item_form', checklist: checklist, item: ChecklistItem.new, placeholder: 'New item' %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<% flash.keys.each do |key| %>
+  <div class="alert alert-<%= rails_to_bootstrap_flash_key(key) %>">
+    <a class="close" href="#" data-dismiss="alert">x</a>
+    <h4 class="alert-heading"><%= key.capitalize %></h4>
+    <% if flash[key].respond_to?(:each) %>
+      <% flash[key].each do |msg| %>
+        <%= msg %>
+        <br>
+      <% end %>
+    <% else %>
+      <%= flash[key] %>
+    <% end %>
+    <% flash.delete(key) %>
+  </div>
+<% end %>

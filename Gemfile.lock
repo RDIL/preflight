@@ -145,15 +145,6 @@ GEM
       thor (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    haml (6.3.0)
-      temple (>= 0.8.2)
-      thor
-      tilt
-    haml-rails (2.1.0)
-      actionpack (>= 5.1)
-      activesupport (>= 5.1)
-      haml (>= 4.0.6)
-      railties (>= 5.1)
     hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -387,7 +378,6 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stringio (3.1.7)
-    temple (0.10.4)
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.3)
@@ -439,8 +429,6 @@ DEPENDENCIES
   faraday-retry
   font-awesome-rails
   foreman
-  haml
-  haml-rails
   jquery-rails
   listen
   nokogiri (~> 1.18)
