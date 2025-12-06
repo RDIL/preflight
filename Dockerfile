@@ -37,6 +37,16 @@ RUN apt-get update -qq && \
       pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+ENV MISE_DATA_DIR="/mise" \
+    MISE_CONFIG_DIR="/mise" \
+    MISE_CACHE_DIR="/mise/cache" \
+    MISE_INSTALL_PATH="/usr/local/bin/mise" \
+    PATH="/mise/shims:$PATH"
+
+RUN curl https://mise.run | sh && \
+    mise install node@22 && \
+    mise use -g node@22
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
