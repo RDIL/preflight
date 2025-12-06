@@ -1,8 +1,16 @@
-#!/bin/sh
-set -e
+#!/bin/bash -e
 
-if [ -f tmp/pids/server.pid ]; then
-  rm tmp/pids/server.pid
+# Enable jemalloc for reduced memory usage and latency.
+# shellcheck disable=SC2144
+if [ -z "${LD_PRELOAD+x}" ] && [ -f /usr/lib/*/libjemalloc.so.2 ]; then
+  export LD_PRELOAD="$(echo /usr/lib/*/libjemalloc.so.2)"
 fi
 
-exec bundle exec "$@"
+# If running the rails server then create or migrate existing database
+if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  ./bin/rails db:prepare
+
+  ./bin/puma
+else
+  exec "${@}"
+fi
