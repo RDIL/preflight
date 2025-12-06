@@ -14,3 +14,9 @@ development:
 test:
   <<: *local_defaults
   database: preflight-test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV.fetch("DATABASE_URL") { "postgres://127.0.0.1:5432" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
