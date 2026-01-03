@@ -4,7 +4,7 @@
 # docker build -t my-app .
 # docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
 
-FROM ruby:3.3.9-slim AS base
+FROM ruby:3.4.8-slim AS base
 
 WORKDIR /rails
 

@@ -1,4 +1,4 @@
-ruby '3.3.9'
+ruby '3.4.8'
 source 'https://rubygems.org'
 
 gem 'decent_exposure'
@@ -26,6 +26,7 @@ gem 'puma'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'faraday-retry'
+gem 'ostruct'
 
 group :test do
   gem 'factory_bot_rails'
