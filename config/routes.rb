@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   post '/github/webhook', to: 'webhooks#github', as: :github_webhook
 
-  authenticated :user, -> user { user.admin? } do
+  authenticated :user, ->(user) { user.admin? } do
     mount DelayedJobWeb, at: "/delayed_job"
   end
 end
