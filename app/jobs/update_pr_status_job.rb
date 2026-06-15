@@ -5,7 +5,7 @@ class UpdatePrStatusJob < ApplicationJob
     client = GithubClient.for_installation(installation_id)
     pr = client.pull_request(repo.github_full_name, pr_number)
 
-    merge_sha = pr[:merge_commit_sha]
+    head_sha = pr[:head][:sha]
     body = pr[:body]
 
     body_results = MarkdownParser.parse(body)
@@ -18,6 +18,6 @@ class UpdatePrStatusJob < ApplicationJob
       desc = 'One or more boxes have yet to be checked.'
     end
 
-    client.create_status(repo.github_full_name, merge_sha, status, context: 'Preflight Checklist', description: desc)
+    client.create_status(repo.github_full_name, head_sha, status, context: 'Preflight Checklist', description: desc)
   end
 end
