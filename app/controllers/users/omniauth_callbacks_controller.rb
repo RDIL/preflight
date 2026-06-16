@@ -2,6 +2,10 @@ class Users::OmniauthCallbacksController < ApplicationController
   before_action :check_team_membership, except: :failure
 
   def github
+    Rails.logger.info("[omniauth-debug] github callback entered (user_signed_in=#{user_signed_in?}, " \
+                      "uid=#{omniauth&.uid.inspect}, nickname=#{omniauth&.info&.nickname.inspect}, " \
+                      "email=#{omniauth&.info&.email.inspect})")
+
     if user_signed_in?
       current_user.update_from_omniauth!(omniauth)
       redirect_to :root, :notice => "Done!"
@@ -11,6 +15,11 @@ class Users::OmniauthCallbacksController < ApplicationController
       flash[:notice] = after_sign_in_notice_for(user)
       sign_in_and_redirect(user)
     end
+  rescue => e
+    Rails.logger.error("[omniauth-debug] github callback FAILED: #{e.class}: #{e.message}")
+    Rails.logger.error("[omniauth-debug] omniauth.auth present? #{request.env['omniauth.auth'].present?}")
+    Rails.logger.error(e.backtrace.first(20).join("\n"))
+    raise
   end
 
   def failure
