@@ -41,10 +41,22 @@ class Users::OmniauthCallbacksController < ApplicationController
 
   def check_team_membership
     login = omniauth.info.nickname
+    team_id = ENV.fetch('GITHUB_TEAM_ID')
 
-    unless client.team_member?(ENV.fetch('GITHUB_TEAM_ID'), login)
-      render :status => :forbidden, :text => "Sorry!"
+    member = client.team_member?(team_id, login)
+    Rails.logger.info("[omniauth-debug] team_member?(team_id=#{team_id.inspect}, login=#{login.inspect}) => #{member.inspect}")
+
+    unless member
+      render :status => :forbidden, :plain => "Sorry!"
     end
+  rescue KeyError => e
+    # GITHUB_TEAM_ID (or another required ENV var) is not set in this environment.
+    Rails.logger.error("[omniauth-debug] check_team_membership missing config: #{e.message}")
+    raise
+  rescue => e
+    Rails.logger.error("[omniauth-debug] check_team_membership FAILED: #{e.class}: #{e.message}")
+    Rails.logger.error(e.backtrace.first(20).join("\n"))
+    raise
   end
 
   def client
